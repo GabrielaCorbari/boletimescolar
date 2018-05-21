@@ -30,7 +30,7 @@ passportSession : require('passport').session(),
            'router',
            'www',
            'favicon',
-         ],
+         ]
   /***************************************************************************
   *                                                                          *
   * The order in which middleware should be run for HTTP request. (the Sails *
@@ -92,4 +92,5 @@ passportSession : require('passport').session(),
   ***************************************************************************/
 
   // cache: 31557600000
+}
 };
