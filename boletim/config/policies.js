@@ -1,6 +1,6 @@
+ //'isAuthenticated',
  module.exports.policies = {
-     '*': 'isAuthenticated',
-     AuthController: true,
-	 'login': true,
-	 'register': true
+     '*': true, 
+     UserController: true,
+     AuthController: true
  }
