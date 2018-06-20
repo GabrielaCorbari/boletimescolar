@@ -43,6 +43,8 @@
                                 <tr>
                                     <th>Avaliacao</th>
                                     <th>Frequencia</th>
+                                    <th>AlunoId</th>
+                                    <th>DisciplinaId</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -78,6 +80,18 @@
                                                 <label>Frequencia</label>
                                                 <input class="form-control" placeholder="Frequencia" id="notas_frequencia" name="notas_frequencia" ng-model="notas.frequencia">
                                                 <p class="help-block">Notas's Frequencia</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>AlunoId</label>
+                                                <input class="form-control" placeholder="AlunoId" id="notas_alunoId" name="notas_alunoId" ng-model="alunoText" 
+														bs3-typeahead bs3-promise="alunos" bs3-displayText="displayTextAluno" bs3-afterSelect="afterSelectAluno">
+                                                <p class="help-block">Notas's AlunoId</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>DisciplinaId</label>
+                                                <input class="form-control" placeholder="DisciplinaId" id="notas_disciplinaId" name="notas_disciplinaId" ng-model="disciplinaText"
+													bs3-typeahead bs3-promise="disciplinas" bs3-displayText="displayTextDisciplina" bs3-afterSelect="afterSelectDisciplina">
+                                                <p class="help-block">Notas's DisciplinaId</p>
                                             </div>
                                         </div>
                                         <!-- /.row (nested) -->

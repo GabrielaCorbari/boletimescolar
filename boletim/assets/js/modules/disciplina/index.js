@@ -10,9 +10,10 @@ app.controller('disciplinaCtrl', function($scope, $compile, $http, DTOptionsBuil
         $scope.disciplinas = {}
         $scope.dtInstance = {};
         $scope.init_dataTable()
-        $scope.new()
+		   $scope.new()
     }
-
+	
+	
     /**
      * edit the supplier
      */

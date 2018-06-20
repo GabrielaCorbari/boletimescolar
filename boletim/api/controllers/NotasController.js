@@ -28,6 +28,8 @@ module.exports = {
         var cols = [
             'avaliacao', 
             'frequencia', 
+            'alunoId', 
+            'disciplinaId', 
         ]
         var all = req.allParams();
         var search = req.param('search')
@@ -109,6 +111,8 @@ module.exports = {
         var pkid = parseInt(req.param('avaliacao'))
         var model = {
             frequencia: req.param('frequencia'),
+            alunoId: req.param('alunoId'),
+            disciplinaId: req.param('disciplinaId'),
             
         }
         //TODO: model validation

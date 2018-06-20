@@ -24,8 +24,8 @@ module.exports = function(req, res, next) {
 
              //Or this if you dont care about deserializing the user:
              //req.user = req.session.passport.user;
-             return res.redirect('/erro');
-
+             //return res.redirect('/erro');
+				return;
          }
          else{
              return res.json(401);

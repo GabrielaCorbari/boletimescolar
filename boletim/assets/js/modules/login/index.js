@@ -10,19 +10,24 @@ app.controller('loginCtrl', function($scope, $compile, $http){
 		$scope.login=function(){
 			console.log("Entrou");
 			console.log($scope.user);
-			ngcurd.post('/login',$scope.user,{
-				success:function(a,b,c){
+			$http(
+				{
+					url: '/login',
+					method: 'POST',
+					data: $scope.user
+				}
+			).then(
+				function(a,b,c){
 					console.log(a,b,c);
-					if(a.user){
+					if(a.data.user){
 						window.location = "/";
 					}
-				else
-				{
-					$scope.mensagem=a.mensagem;
+					else
+					{
+						$scope.mensagem=a.data.mensagem;
+					}
 				}
-				}
-				, error: console.error
-			})	
+			)				
 		}
 	$scope.init()
 	

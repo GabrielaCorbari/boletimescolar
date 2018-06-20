@@ -1,4 +1,4 @@
-var app = angular.module('notasApp', ['datatables'])
+var app = angular.module('notasApp', ['datatables',  'bootstrap3-typeahead'])
 app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, DTColumnBuilder) {
 
     /**
@@ -10,8 +10,35 @@ app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, 
         $scope.notass = {}
         $scope.dtInstance = {};
         $scope.init_dataTable()
+	
+		$scope.disciplinas= [];
+		$http.get('/disciplina/query').then(function(response) {
+		$scope.disciplinas = response.data
+		});
+		
+		$scope.alunos= [];
+		$http.get('/aluno/query').then(function(response) {
+		$scope.alunos = response.data
+		});
         $scope.new()
-    }
+    }		
+     
+	
+	$scope.displayTextAluno = function(item) {
+	return item.nome;
+	}
+	$scope.afterSelectAluno = function(item) {
+	$scope.notas.alunoId = item.id;
+	}
+	
+	$scope.displayTextDisciplina = function(item) {
+	return item.disciplina;
+	}
+	$scope.afterSelectDisciplina = function(item) {
+	$scope.notas.disciplinaId = item.id;
+	}	
+		
+		
 
     /**
      * edit the supplier
@@ -28,6 +55,8 @@ app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, 
         $('#saveButton').show()
         $scope.notas = {
             frequencia: "",
+            alunoId: "",
+            disciplinaId: "",
             
         }
     }
@@ -93,6 +122,8 @@ app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, 
             
                 DTColumnBuilder.newColumn('avaliacao').withTitle('Avaliacao'),
                 DTColumnBuilder.newColumn('frequencia').withTitle('Frequencia'),
+                DTColumnBuilder.newColumn('alunoId').withTitle('AlunoId'),
+                DTColumnBuilder.newColumn('disciplinaId').withTitle('DisciplinaId'),
                 DTColumnBuilder.newColumn('avaliacao').withTitle('').notSortable().renderWith(function(col, type, row) {
                     $scope.db[row.avaliacao] = row
                     return '<button ng-click="view(' + row.avaliacao + ')" class="btn btn-default btn-circle" data-toggle="modal"  data-target="#edit_notas" ><i class="fa fa-eye"></i></button> '

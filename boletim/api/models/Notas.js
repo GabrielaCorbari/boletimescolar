@@ -15,7 +15,11 @@ module.exports = {
 
     avaliacao: { type: 'float' },
 
-    frequencia: { type: 'float' }
+    frequencia: { type: 'float' },
+
+    alunoId: { type: 'integer' },
+
+    disciplinaId: { type: 'integer' }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

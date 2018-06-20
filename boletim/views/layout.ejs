@@ -77,10 +77,11 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/login">Login</a></li>
-            <li><a href="/aluno">Boletim Escolar</a></li>
-			<li><a href="/user">User</a></li>
+			<li><a href="/aluno">Boletim Escolar</a></li>
+		    <li><a href="/disciplina">Disciplina</a></li>
+         	<li><a href="/notas">Nota</a></li>
             <li><a href="/register">Register</a></li>
+			<li><a href="/Mostrardados">Mostrar Dados</a></li>
             
           </ul>
         </div><!--/.nav-collapse -->
@@ -166,6 +167,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="/components/bootbox/bootbox.js"></script>
     <script src="/js/modules/common.js"></script>
+	 <script src="/components/bootstrap3-typeahead/bootstrap3-typeahead.min.js"></script>
+	<script src="/components/angular-bootstrap3-typeahead/angular-bootstrap3-typeahead.js"></script>
+
 
     <%if ('undefined' != typeof footer){
       for (var i in footer){%>

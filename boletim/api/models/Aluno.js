@@ -9,13 +9,6 @@ module.exports = {
 
   attributes: {
 
-    id: { 
-		type: 'integer',
-		primaryKey: true,
-		autoincrement: true,
-		unique: true
-		},
-
     nome: { 
 		type: 'string' 
 	},
