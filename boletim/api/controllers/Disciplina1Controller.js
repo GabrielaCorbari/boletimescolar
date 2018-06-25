@@ -26,7 +26,6 @@ module.exports = {
      */
     query: function(req, res) {
         var cols = [
-            'id', 
             'nome', 
             'professor', 
         ]
@@ -35,11 +34,11 @@ module.exports = {
         var order = req.param('order')
         if (!order || !order.length) {
             order = [{
-                column: 'id',
+                column: 'nome',
                 dir: 'desc'
             }]
         }
-        var limit = all['length'] || 100000
+        var limit = all['length'] || 10000
         var skip = req.param('start') || 0
 
         var sort = cols[order[0].column] + ' ' + order[0].dir
@@ -63,7 +62,7 @@ module.exports = {
         if (search && search.value) {
             cond = {
                 or: [{
-                    id: {
+                    nome: {
                         'contains': search.value
                     }
                 }]
@@ -107,16 +106,15 @@ module.exports = {
                 msg: 'Server error'
             }
             //int primary id
-        var pkid = parseInt(req.param('id'))
+        var pkid = parseInt(req.param('nome'))
         var model = {
-            nome: req.param('nome'),
             professor: req.param('professor'),
             
         }
         //TODO: model validation
         if (pkid && !isNaN(pkid)) {
             Disciplina.update({
-                id: pkid
+                nome: pkid
             }, model).exec(function(err, newmodel) {
                 if (!err) {
                     rt.success = true
@@ -151,10 +149,10 @@ module.exports = {
                 msg: 'Server error'
             }
         //int primary id
-        var pkid = parseInt(req.param('id'))
+        var pkid = parseInt(req.param('nome'))
         if (pkid && !isNaN(pkid)) {
             Disciplina.destroy({
-                id: pkid
+                nome: pkid
             }).exec(function(err) {
                 if (!err) {
                     rt.success = true

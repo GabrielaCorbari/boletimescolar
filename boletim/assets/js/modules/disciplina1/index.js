@@ -10,9 +10,10 @@ app.controller('disciplinaCtrl', function($scope, $compile, $http, DTOptionsBuil
         $scope.disciplinas = {}
         $scope.dtInstance = {};
         $scope.init_dataTable()
-        $scope.new()
+		   $scope.new()
     }
-
+	
+	
     /**
      * edit the supplier
      */
@@ -27,7 +28,6 @@ app.controller('disciplinaCtrl', function($scope, $compile, $http, DTOptionsBuil
     $scope.new = function() {
         $('#saveButton').show()
         $scope.disciplina = {
-            nome: "",
             professor: "",
             
         }
@@ -48,7 +48,7 @@ app.controller('disciplinaCtrl', function($scope, $compile, $http, DTOptionsBuil
                 title: 'Confirm remove ',
                 message: 'Warning: all this disciplina\'s data will be removed!',
                 ok: function() {
-                    ngcurd.post('/disciplina/remove', {id: id}, {
+                    ngcurd.post('/disciplina/remove', {nome: id}, {
                         success: function(){
                             $scope.dtInstance.reloadData()
                         }
@@ -92,14 +92,13 @@ app.controller('disciplinaCtrl', function($scope, $compile, $http, DTOptionsBuil
             });
         $scope.dtColumns = [
             
-                DTColumnBuilder.newColumn('id').withTitle('Id'),
                 DTColumnBuilder.newColumn('nome').withTitle('Nome'),
                 DTColumnBuilder.newColumn('professor').withTitle('Professor'),
-                DTColumnBuilder.newColumn('id').withTitle('').notSortable().renderWith(function(col, type, row) {
-                    $scope.db[row.id] = row
-                    return '<button ng-click="view(' + row.id + ')" class="btn btn-default btn-circle" data-toggle="modal"  data-target="#edit_disciplina" ><i class="fa fa-eye"></i></button> '
-                         + '<button ng-click="edit(' + row.id + ')" class="btn btn-success btn-circle" data-toggle="modal"  data-target="#edit_disciplina"><i class="fa fa-edit"></i></button> ' 
-                         + '<button ng-click="remove(' + row.id + ')" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#edit_disciplina" ><i class="fa fa-remove"></i></button>'
+                DTColumnBuilder.newColumn('nome').withTitle('').notSortable().renderWith(function(col, type, row) {
+                    $scope.db[row.nome] = row
+                    return '<button ng-click="view(' + row.nome + ')" class="btn btn-default btn-circle" data-toggle="modal"  data-target="#edit_disciplina" ><i class="fa fa-eye"></i></button> '
+                         + '<button ng-click="edit(' + row.nome + ')" class="btn btn-success btn-circle" data-toggle="modal"  data-target="#edit_disciplina"><i class="fa fa-edit"></i></button> ' 
+                         + '<button ng-click="remove(' + row.nome + ')" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#edit_disciplina" ><i class="fa fa-remove"></i></button>'
                         
                 })
             ]

@@ -13,18 +13,21 @@ app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, 
 	
 		$scope.disciplinas= [];
 		$http.get('/disciplina/query').then(function(response) {
-		$scope.disciplinas = response.data
+			console.log(response.data.data);
+		$scope.disciplinas = response.data.data
 		});
 		
 		$scope.alunos= [];
 		$http.get('/aluno/query').then(function(response) {
-		$scope.alunos = response.data
+			console.log(response.data.data);
+		$scope.alunos = response.data.data
 		});
         $scope.new()
     }		
      
 	
 	$scope.displayTextAluno = function(item) {
+		console.log(item);
 	return item.nome;
 	}
 	$scope.afterSelectAluno = function(item) {
@@ -32,7 +35,7 @@ app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, 
 	}
 	
 	$scope.displayTextDisciplina = function(item) {
-	return item.disciplina;
+	return item.nome || "";
 	}
 	$scope.afterSelectDisciplina = function(item) {
 	$scope.notas.disciplinaId = item.id;
@@ -90,7 +93,7 @@ app.controller('notasCtrl', function($scope, $compile, $http, DTOptionsBuilder, 
      * add or update supplier
      */
     $scope.save = function() {
-
+		console.log($scope.notas);
         ngcurd.post('/notas/update', $scope.notas, {
             success: function(){
                 $scope.dtInstance.reloadData()
